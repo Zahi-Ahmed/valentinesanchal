@@ -1,45 +1,50 @@
 
 
-# 💌 "Will You Be My Valentine?" Website
+# Replace Assets and Add Play Button
 
-A cute, pixel-art styled Valentine's website with 3 interactive screens and playful animations.
+## Changes Overview
 
----
-
-## Screen 1 — The Envelope
-- Soft pinkish background covered with scattered small red hearts
-- A pixel-art style envelope centered on the page with a heart seal
-- Text below: **"♡ Letter For You ♡"** in a pixel/retro font
-- The envelope is clickable — clicking it transitions to Screen 2
-
-## Screen 2 — The Question
-- A retro-styled "window" dialog box with a pink checkered background
-- Title bar says **"LOVE"** with pixel hearts decoration
-- Text: **"Will you be my Valentine?"**
-- A cute pixel-art black cat holding a heart, with a gentle **bobbing animation** (floating up and down)
-- Two buttons: **YES** and **NO**
-  - **YES** button works normally and takes you to Screen 3
-  - **NO** button is **uncatchable** — it teleports to a random position on hover, making it impossible to click 😄
-- Same scattered hearts background behind the window
-
-## Screen 3 — The Celebration
-- Same retro window style
-- Text: **"Yippeeee!"** with floating hearts
-- The cat now does a happy **dancing/wiggling animation**
-- A **video player** embedded below, playing a video from a Google Drive link (placeholder link for now — you can swap it in later)
-- Confetti or extra floating hearts for celebration vibes
+Replace all AI-generated assets with the user's uploaded pixel-art files and swap the embedded video iframe for a simple "Play" button.
 
 ---
 
-## Design Style
-- **Pixel art / retro aesthetic** throughout (CSS pixel-art techniques + pixel font)
-- **Color palette**: soft pink, red, cream/beige tones
-- Smooth transitions between screens
-- Mobile-friendly and responsive
-- No backend needed — purely frontend
+## 1. Copy User Assets into the Project
 
-## Customizable Later
-- Your girlfriend's name on the envelope
-- The final message text
-- The Google Drive video link
+Replace existing files in `src/assets/` with the uploaded ones:
+- `user-uploads://cat_dance.gif` -> `src/assets/cat-dance.gif`
+- `user-uploads://cat_heart.gif` -> `src/assets/cat-heart.gif`
+- `user-uploads://envelope.png` -> `src/assets/envelope.png`
+- `user-uploads://window.png` -> `src/assets/window.png`
+
+## 2. Update PixelEnvelope Component
+
+- Import the new `envelope.png`
+- Remove the `clipPath` cropping since the new asset has clean edges
+- Display the envelope image directly with `imageRendering: pixelated`
+
+## 3. Update PixelCat Component
+
+- Import `cat-heart.gif` and `cat-dance.gif` (GIF format now, so animations are baked into the files)
+- Remove the `clipPath` cropping
+- Keep the bob/wiggle CSS animations on the container
+
+## 4. Update RetroWindow Component
+
+- Use `window.png` as the window frame background image instead of the CSS-built title bar and checkered background
+- Position children content over the checkered content area of the window image
+- Remove the CSS-based title bar and checkered background pattern
+
+## 5. Replace Video Iframe with Play Button (Screen 3)
+
+In `src/pages/Index.tsx`, replace the video `<iframe>` embed with a styled "Play" button:
+- A pixel-styled button with a triangular play icon (built with CSS borders for a pixelated look)
+- Text says "Play" in the pixel font
+- On click, opens the Google Drive video link in a new tab (`window.open`)
+- Styled consistently with the retro theme (pixel-border, primary colors)
+
+## Technical Details
+
+- **File format change**: Cat assets change from `.png` to `.gif` -- update all import paths accordingly
+- **RetroWindow**: Will use the window.png as a background image with `background-size: 100% 100%` and position content inside the checkered area using padding
+- **Play button**: Will use `window.open(videoUrl, '_blank')` where `videoUrl` is the Google Drive view link
 
