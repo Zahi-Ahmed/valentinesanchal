@@ -4,14 +4,7 @@ import PixelEnvelope from "@/components/PixelEnvelope";
 import PixelCat from "@/components/PixelCat";
 import RetroWindow from "@/components/RetroWindow";
 import Confetti from "@/components/Confetti";
-
-// =============================================
-// 🔧 CUSTOMIZE THESE VALUES
-// =============================================
-const GOOGLE_DRIVE_VIDEO_ID = "1F1_FgckQ0Z-oo7nLeJOLDubcqwlZ82jt";
-// To get the ID: share your video → copy link → the ID is the long string in the URL
-// Example link: https://drive.google.com/file/d/ABC123XYZ/view → ID is ABC123XYZ
-// =============================================
+import valentineVideo from "@/assets/valentine-video.mp4";
 
 type Screen = "envelope" | "question" | "celebration";
 
@@ -26,8 +19,6 @@ const Index = () => {
     const left = 10 + Math.random() * 70;
     setNoButtonPos({ top: `${top}%`, left: `${left}%` });
   }, []);
-
-  const videoUrl = `https://drive.google.com/file/d/${GOOGLE_DRIVE_VIDEO_ID}/view`;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background">
@@ -54,7 +45,7 @@ const Index = () => {
             <p className="font-pixel text-foreground text-xs sm:text-sm text-center leading-relaxed mt-2">
               Will you be my Valentine?
             </p>
-            <div className="flex gap-4 mt-4 w-full justify-center relative min-h-[60px]">
+            <div className="flex gap-4 mt-4 mb-2 w-full justify-center relative min-h-[60px]">
               <button
                 onClick={() => setScreen("celebration")}
                 className="bg-primary text-primary-foreground font-pixel text-xs sm:text-sm px-6 py-3 pixel-border hover:bg-accent transition-colors"
@@ -85,34 +76,31 @@ const Index = () => {
 
       {/* Screen 3: Celebration */}
       {screen === "celebration" && (
-        <div className="z-10 flex flex-col items-center animate-[scale-in_0.4s_ease-out]">
+        <div className="z-10 flex flex-col items-center animate-[scale-in_0.4s_ease-out] max-h-[90vh]">
           <Confetti />
           <RetroWindow title="♥ YIPPEE ♥">
-            <p className="font-pixel text-primary text-base sm:text-lg text-center">
+            <p className="font-pixel text-primary text-xs sm:text-sm text-center">
               Yippeeee! 🎉
             </p>
-            <PixelCat dancing />
-            <p className="font-pixel text-muted-foreground text-[10px] text-center mt-2">
+            <div className="w-24 sm:w-32">
+              <PixelCat dancing />
+            </div>
+            <p className="font-pixel text-muted-foreground text-[10px] text-center">
               I knew you'd say yes 💕
             </p>
 
-            {/* Play Button */}
-            <button
-              onClick={() => window.open(videoUrl, '_blank')}
-              className="mt-4 bg-primary text-primary-foreground font-pixel text-xs sm:text-sm px-8 py-4 pixel-border hover:bg-accent transition-colors flex items-center gap-3"
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: 0,
-                  height: 0,
-                  borderTop: "8px solid transparent",
-                  borderBottom: "8px solid transparent",
-                  borderLeft: "12px solid currentColor",
-                }}
+            {/* Video Player */}
+            <div className="w-full mt-2 pixel-border overflow-hidden">
+              <video
+                src={valentineVideo}
+                className="w-full max-h-[30vh]"
+                controls
+                autoPlay
+                loop
+                playsInline
+                style={{ imageRendering: "auto" }}
               />
-              Play
-            </button>
+            </div>
           </RetroWindow>
         </div>
       )}
