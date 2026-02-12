@@ -8,7 +8,7 @@ import Confetti from "@/components/Confetti";
 // =============================================
 // 🔧 CUSTOMIZE THESE VALUES
 // =============================================
-const GOOGLE_DRIVE_VIDEO_ID = "YOUR_VIDEO_ID_HERE"; // Replace with your Google Drive file ID
+const GOOGLE_DRIVE_VIDEO_ID = "1F1_FgckQ0Z-oo7nLeJOLDubcqwlZ82jt";
 // To get the ID: share your video → copy link → the ID is the long string in the URL
 // Example link: https://drive.google.com/file/d/ABC123XYZ/view → ID is ABC123XYZ
 // =============================================
@@ -37,10 +37,10 @@ const Index = () => {
       {screen === "envelope" && (
         <div className="flex flex-col items-center gap-6 z-10 animate-[scale-in_0.5s_ease-out]">
           <PixelEnvelope onClick={() => setScreen("question")} />
-          <p className="font-pixel text-primary text-sm sm:text-lg tracking-wide text-center px-4">
+          <p className="font-pixel text-foreground text-sm sm:text-lg tracking-wide text-center px-4 drop-shadow-sm">
             ♡ Letter For You ♡
           </p>
-          <p className="text-muted-foreground text-[10px] mt-2 animate-pulse">
+          <p className="text-foreground/70 text-[10px] mt-2 animate-pulse font-pixel">
             click to open
           </p>
         </div>
@@ -97,25 +97,14 @@ const Index = () => {
             </p>
 
             {/* Video Player */}
-            <div className="w-full mt-4 pixel-border bg-valentine-dark">
-              <div className="p-1">
-                {GOOGLE_DRIVE_VIDEO_ID === "YOUR_VIDEO_ID_HERE" ? (
-                  <div className="w-full aspect-video bg-muted flex items-center justify-center">
-                    <p className="font-pixel text-muted-foreground text-[8px] text-center px-4 leading-relaxed">
-                      🎬 Video goes here!<br />
-                      Replace VIDEO_ID in code
-                    </p>
-                  </div>
-                ) : (
-                  <iframe
-                    src={videoEmbedUrl}
-                    className="w-full aspect-video"
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    title="Valentine's video"
-                  />
-                )}
-              </div>
+            <div className="w-full mt-4 pixel-border bg-valentine-dark p-1">
+              <iframe
+                src={videoEmbedUrl}
+                className="w-full aspect-video"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="Valentine's video"
+              />
             </div>
           </RetroWindow>
         </div>

@@ -13,12 +13,14 @@ const PixelCat = ({ dancing = false }: PixelCatProps) => {
         animation: dancing ? "wiggle 0.5s ease-in-out infinite" : "bob 2s ease-in-out infinite",
       }}
     >
-      <img
-        src={dancing ? catDanceImg : catHeartImg}
-        alt={dancing ? "Happy dancing cat" : "Cat holding a heart"}
-        className="w-32 sm:w-44 drop-shadow-md"
-        style={{ imageRendering: "pixelated" }}
-      />
+      <div className="overflow-hidden" style={{ clipPath: "inset(10% 12% 5% 12%)" }}>
+        <img
+          src={dancing ? catDanceImg : catHeartImg}
+          alt={dancing ? "Happy dancing cat" : "Cat holding a heart"}
+          className="w-40 sm:w-52 drop-shadow-md"
+          style={{ imageRendering: "pixelated" }}
+        />
+      </div>
     </div>
   );
 };
