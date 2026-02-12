@@ -12,12 +12,14 @@ const PixelEnvelope = ({ onClick }: PixelEnvelopeProps) => {
       style={{ animation: "envelope-pulse 2s ease-in-out infinite" }}
       aria-label="Open letter"
     >
-      <img
-        src={envelopeImg}
-        alt="Love letter envelope"
-        className="w-48 sm:w-72 drop-shadow-lg group-hover:drop-shadow-2xl transition-all"
-        style={{ imageRendering: "pixelated" }}
-      />
+      <div className="w-56 sm:w-80 overflow-hidden" style={{ clipPath: "inset(30% 14% 22% 14%)" }}>
+        <img
+          src={envelopeImg}
+          alt="Love letter envelope"
+          className="w-full drop-shadow-lg group-hover:drop-shadow-2xl transition-all"
+          style={{ imageRendering: "pixelated" }}
+        />
+      </div>
     </button>
   );
 };
