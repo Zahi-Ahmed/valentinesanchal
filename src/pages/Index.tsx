@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import FloatingHearts from "@/components/FloatingHearts";
 import PixelEnvelope from "@/components/PixelEnvelope";
 import PixelCat from "@/components/PixelCat";
@@ -89,18 +89,41 @@ const Index = () => {
               I knew you'd say yes 💕
             </p>
 
-            {/* Video Player */}
-            <div className="w-full mt-2 pixel-border overflow-hidden">
-              <video
-                src={valentineVideo}
-                className="w-full max-h-[30vh]"
-                controls
-                autoPlay
-                loop
-                playsInline
-                style={{ imageRendering: "auto" }}
+            {/* Play Button */}
+            <button
+              onClick={() => {
+                const video = document.createElement("video");
+                video.src = valentineVideo;
+                video.controls = true;
+                video.playsInline = true;
+                video.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;z-index:9999;background:#000;object-fit:contain;";
+                document.body.appendChild(video);
+                video.play();
+                
+                const exitFullscreen = () => {
+                  video.pause();
+                  document.body.removeChild(video);
+                };
+                
+                video.addEventListener("ended", exitFullscreen);
+                video.addEventListener("click", (e) => {
+                  if (video.paused) exitFullscreen();
+                });
+              }}
+              className="mt-3 bg-primary text-primary-foreground font-pixel text-[10px] sm:text-xs px-5 py-2.5 pixel-border hover:bg-accent transition-colors flex items-center gap-2"
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  width: 0,
+                  height: 0,
+                  borderTop: "6px solid transparent",
+                  borderBottom: "6px solid transparent",
+                  borderLeft: "10px solid currentColor",
+                }}
               />
-            </div>
+              Play
+            </button>
           </RetroWindow>
         </div>
       )}
