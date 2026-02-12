@@ -17,7 +17,7 @@ const PixelCat = ({ dancing = false }: PixelCatProps) => {
         src={dancing ? catDanceImg : catHeartImg}
         alt={dancing ? "Happy dancing cat" : "Cat holding a heart"}
         className="w-32 sm:w-44 drop-shadow-md"
-        style={{ imageRendering: "auto" }}
+        style={{ imageRendering: "pixelated" }}
       />
     </div>
   );

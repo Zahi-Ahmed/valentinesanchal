@@ -16,7 +16,7 @@ const PixelEnvelope = ({ onClick }: PixelEnvelopeProps) => {
         src={envelopeImg}
         alt="Love letter envelope"
         className="w-48 sm:w-72 drop-shadow-lg group-hover:drop-shadow-2xl transition-all"
-        style={{ imageRendering: "auto" }}
+        style={{ imageRendering: "pixelated" }}
       />
     </button>
   );
