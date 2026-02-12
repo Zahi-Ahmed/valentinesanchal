@@ -27,7 +27,7 @@ const Index = () => {
     setNoButtonPos({ top: `${top}%`, left: `${left}%` });
   }, []);
 
-  const videoEmbedUrl = `https://drive.google.com/file/d/${GOOGLE_DRIVE_VIDEO_ID}/preview`;
+  const videoUrl = `https://drive.google.com/file/d/${GOOGLE_DRIVE_VIDEO_ID}/view`;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background">
@@ -96,16 +96,23 @@ const Index = () => {
               I knew you'd say yes 💕
             </p>
 
-            {/* Video Player */}
-            <div className="w-full mt-4 pixel-border bg-valentine-dark p-1">
-              <iframe
-                src={videoEmbedUrl}
-                className="w-full aspect-video"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-                title="Valentine's video"
+            {/* Play Button */}
+            <button
+              onClick={() => window.open(videoUrl, '_blank')}
+              className="mt-4 bg-primary text-primary-foreground font-pixel text-xs sm:text-sm px-8 py-4 pixel-border hover:bg-accent transition-colors flex items-center gap-3"
+            >
+              <span
+                style={{
+                  display: "inline-block",
+                  width: 0,
+                  height: 0,
+                  borderTop: "8px solid transparent",
+                  borderBottom: "8px solid transparent",
+                  borderLeft: "12px solid currentColor",
+                }}
               />
-            </div>
+              Play
+            </button>
           </RetroWindow>
         </div>
       )}

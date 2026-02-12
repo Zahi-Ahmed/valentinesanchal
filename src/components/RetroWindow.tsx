@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import windowImg from "@/assets/window.png";
 
 interface RetroWindowProps {
   title?: string;
@@ -7,23 +8,17 @@ interface RetroWindowProps {
 
 const RetroWindow = ({ title = "LOVE", children }: RetroWindowProps) => {
   return (
-    <div className="w-[90vw] max-w-md pixel-border-thick bg-valentine-cream">
-      {/* Title bar */}
-      <div className="bg-primary text-primary-foreground px-3 py-2 flex items-center gap-2 text-xs sm:text-sm">
-        <span>♥</span>
-        <span className="flex-1 text-center font-pixel tracking-widest">{title}</span>
-        <span>♥</span>
-      </div>
-      {/* Content area with checkered bg */}
-      <div
-        className="p-4 sm:p-6 flex flex-col items-center gap-4"
-        style={{
-          backgroundImage:
-            "linear-gradient(45deg, hsl(350 80% 92%) 25%, transparent 25%), linear-gradient(-45deg, hsl(350 80% 92%) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, hsl(350 80% 92%) 75%), linear-gradient(-45deg, transparent 75%, hsl(350 80% 92%) 75%)",
-          backgroundSize: "20px 20px",
-          backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
-        }}
-      >
+    <div
+      className="w-[90vw] max-w-md relative"
+      style={{
+        backgroundImage: `url(${windowImg})`,
+        backgroundSize: "100% 100%",
+        backgroundRepeat: "no-repeat",
+        imageRendering: "pixelated",
+      }}
+    >
+      {/* Content positioned inside the window's checkered area */}
+      <div className="pt-12 pb-6 px-6 sm:pt-14 sm:pb-8 sm:px-8 flex flex-col items-center gap-4">
         {children}
       </div>
     </div>
