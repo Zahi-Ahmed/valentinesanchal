@@ -9,7 +9,7 @@ interface RetroWindowProps {
 const RetroWindow = ({ title = "LOVE", children }: RetroWindowProps) => {
   return (
     <div
-      className="w-[95vw] max-w-lg relative"
+      className="w-[95vw] max-w-xl relative"
       style={{
         backgroundImage: `url(${windowImg})`,
         backgroundSize: "100% 100%",

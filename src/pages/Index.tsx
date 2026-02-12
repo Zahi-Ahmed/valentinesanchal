@@ -86,7 +86,7 @@ const Index = () => {
               <PixelCat dancing />
             </div>
             <p className="font-pixel text-muted-foreground text-[10px] text-center">
-              I knew you'd say yes 💕
+              I Love you Anchal, forever and ever 💕
             </p>
 
             {/* Play Button */}
