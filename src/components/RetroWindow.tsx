@@ -18,7 +18,7 @@ const RetroWindow = ({ title = "LOVE", children }: RetroWindowProps) => {
       }}
     >
       {/* Content positioned inside the window's checkered area */}
-      <div className="pt-12 pb-6 px-6 sm:pt-14 sm:pb-8 sm:px-8 flex flex-col items-center gap-4">
+      <div className="pt-[38%] pb-[12%] px-[10%] flex flex-col items-center gap-2">
         {children}
       </div>
     </div>
