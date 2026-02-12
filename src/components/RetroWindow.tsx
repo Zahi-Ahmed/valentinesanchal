@@ -9,7 +9,7 @@ interface RetroWindowProps {
 const RetroWindow = ({ title = "LOVE", children }: RetroWindowProps) => {
   return (
     <div
-      className="w-[90vw] max-w-md relative"
+      className="w-[95vw] max-w-lg relative"
       style={{
         backgroundImage: `url(${windowImg})`,
         backgroundSize: "100% 100%",
@@ -18,7 +18,7 @@ const RetroWindow = ({ title = "LOVE", children }: RetroWindowProps) => {
       }}
     >
       {/* Content positioned inside the window's checkered area */}
-      <div className="pt-[38%] pb-[12%] px-[10%] flex flex-col items-center gap-2">
+      <div className="pt-[38%] pb-[14%] px-[14%] flex flex-col items-center gap-3">
         {children}
       </div>
     </div>
