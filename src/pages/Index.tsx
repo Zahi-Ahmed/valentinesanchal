@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import FloatingHearts from "@/components/FloatingHearts";
 import PixelEnvelope from "@/components/PixelEnvelope";
 import PixelCat from "@/components/PixelCat";
@@ -6,12 +6,35 @@ import RetroWindow from "@/components/RetroWindow";
 import Confetti from "@/components/Confetti";
 import valentineVideo from "@/assets/valentine-video.mp4";
 
+// Preload assets
+import envelopeImg from "@/assets/envelope.png";
+import catHeartImg from "@/assets/cat-heart.gif";
+import catDanceImg from "@/assets/cat-dance.gif";
+import windowImg from "@/assets/window.png";
+import heartsBgImg from "@/assets/hearts-bg.png";
+
+const PRELOAD_ASSETS = [envelopeImg, catHeartImg, catDanceImg, windowImg, heartsBgImg];
+
 type Screen = "envelope" | "question" | "celebration";
 
 const Index = () => {
   const [screen, setScreen] = useState<Screen>("envelope");
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
   const [noButtonPos, setNoButtonPos] = useState<{ top?: string; left?: string }>({});
   const [noButtonAbsolute, setNoButtonAbsolute] = useState(false);
+
+  useEffect(() => {
+    let loaded = 0;
+    const total = PRELOAD_ASSETS.length;
+    PRELOAD_ASSETS.forEach((src) => {
+      const img = new Image();
+      img.onload = img.onerror = () => {
+        loaded++;
+        if (loaded >= total) setAssetsLoaded(true);
+      };
+      img.src = src;
+    });
+  }, []);
 
   const handleNoHover = useCallback(() => {
     setNoButtonAbsolute(true);
@@ -19,6 +42,14 @@ const Index = () => {
     const left = 10 + Math.random() * 70;
     setNoButtonPos({ top: `${top}%`, left: `${left}%` });
   }, []);
+
+  if (!assetsLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <p className="font-pixel text-primary text-xs animate-pulse">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-background">
