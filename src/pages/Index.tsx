@@ -121,40 +121,50 @@ const Index = () => {
             </p>
 
             {/* Play Button */}
-            <button
-              onClick={() => {
-                const video = document.createElement("video");
-                video.src = valentineVideo;
-                video.controls = true;
-                video.playsInline = true;
-                video.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;z-index:9999;background:#000;object-fit:contain;";
-                document.body.appendChild(video);
-                video.play();
-                
-                const exitFullscreen = () => {
-                  video.pause();
-                  document.body.removeChild(video);
-                };
-                
-                video.addEventListener("ended", exitFullscreen);
-                video.addEventListener("click", (e) => {
-                  if (video.paused) exitFullscreen();
-                });
-              }}
-              className="mt-3 bg-primary text-primary-foreground font-pixel text-[10px] sm:text-xs px-5 py-2.5 pixel-border hover:bg-accent transition-colors flex items-center gap-2"
-            >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: 0,
-                  height: 0,
-                  borderTop: "6px solid transparent",
-                  borderBottom: "6px solid transparent",
-                  borderLeft: "10px solid currentColor",
+            <div className="flex gap-3 mt-3">
+              <button
+                onClick={() => {
+                  const video = document.createElement("video");
+                  video.src = valentineVideo;
+                  video.controls = true;
+                  video.playsInline = true;
+                  video.style.cssText = "position:fixed;inset:0;width:100vw;height:100vh;z-index:9999;background:#000;object-fit:contain;";
+                  document.body.appendChild(video);
+                  video.play();
+                  
+                  const exitFullscreen = () => {
+                    video.pause();
+                    document.body.removeChild(video);
+                  };
+                  
+                  video.addEventListener("ended", exitFullscreen);
+                  video.addEventListener("click", (e) => {
+                    if (video.paused) exitFullscreen();
+                  });
                 }}
-              />
-              Play
-            </button>
+                className="bg-primary text-primary-foreground font-pixel text-[10px] sm:text-xs px-5 py-2.5 pixel-border hover:bg-accent transition-colors flex items-center gap-2"
+              >
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: 0,
+                    height: 0,
+                    borderTop: "6px solid transparent",
+                    borderBottom: "6px solid transparent",
+                    borderLeft: "10px solid currentColor",
+                  }}
+                />
+                Play
+              </button>
+              <a
+                href="https://digibouquet.vercel.app/bouquet/80b979fa-efd8-4b47-ad6d-c6dd596a8784"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-primary text-primary-foreground font-pixel text-[10px] sm:text-xs px-5 py-2.5 pixel-border hover:bg-accent transition-colors flex items-center gap-2"
+              >
+                💐 Bouquet
+              </a>
+            </div>
           </RetroWindow>
         </div>
       )}
